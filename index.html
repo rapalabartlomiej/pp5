@@ -1,55 +1,80 @@
 <!doctype html>
 <html lang="pl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Bootstrap demo</title>
-  </head>
-  <body>
-    <div class="container">
-   
-    <form class="row g-3">
-    <div class="mb-3">
-        <label class="form-label">Nazwa firmy</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" required>
-      </div>
-      <div class="mb-3">
-        <labelclass="form-label">NIP</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" required>
-      </div>
-      <div class="mb-3">
-        <labelclass="form-label">Miasto</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Ulica</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1">
-      </div>
-    
-      
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Bootstrap demo</title>
+  <script>
+    function funkcja(event) {
+      event.preventDefault()
+      console.log(event)
+        let customer = {
+          nazwaFirmy: document.getElementById("FirmaEntry").value,
+          NIP: document.getElementById("nipEntry").value,
+          Miasto: document.getElementById("MiastoEntry").value,
+          Ulica: document.getElementById("UlicaEntry").value
+        }
+      console.log(customer)
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+
+    <form class="row g-3" onsubmit="funkcja(event)">
       <div class="mb-3">
-        <label class="form-label">uwagi</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <label class="form-label">Nazwa firmy</label>
+        <input class="form-control" id="FirmaEntry" required>
+      </div>
+
+
+            <div class="mb-3">
+              <label class="form-label">NIP</label>
+                <input class="form-control" id="nipEntry" required>
+            </div>
+
+
+            <div class="mb-3">
+              <label class="form-label">Miasto</label>
+                <input class="form-control" id="MiastoEntry" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Ulica</label>
+              <input class="form-control" id="UlicaEntry">
+            </div>
+
+
+            <div class="mb-3">
+              <label class="form-label">uwagi</label>
+              <textarea class="form-control" id="uwagi" rows="3"></textarea>
+
+
         <br>
         <select class="form-select" aria-label="Default select example">
-        
-            <option selected>branża</option>
-            <option value="IT">One</option>
-            <option value="IT2">Two</option>
-            <option value="IT3">Three</option>
-          </select>
-          <br>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-            <label class="form-check-label" for="flexCheckDefault">
-              Default checkbox
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary mb-3">zatwierdz</button><br> 
+
+          <option selected>branża</option>
+          <option value="IT">IT</option>
+          <option value="IT2">IT2</option>
+          <option value="IT3">IT3</option>
+        </select>
+
+
+        <br>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+          <label class="form-check-label" for="flexCheckDefault">
+            ZaZnacz
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">zatwierdz</button><br>
     </form>
 
-</div>
-    </body>
+  </div>
+</body>
+
 </html>
