@@ -2,11 +2,15 @@
 <html lang="pl">
 
 <head>
+  
+ 
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <title>Bootstrap demo</title>
+   
+  
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="assets/style/style.css">
   <script>
     function funkcja(event) {
       event.preventDefault()
@@ -15,9 +19,16 @@
           nazwaFirmy: document.getElementById("FirmaEntry").value,
           NIP: document.getElementById("nipEntry").value,
           Miasto: document.getElementById("MiastoEntry").value,
-          Ulica: document.getElementById("UlicaEntry").value
+          Ulica: document.getElementById("UlicaEntry").value,
+          uwagi: document.getElementById("uwagi").value,
+          flexCheckDefault: document.getElementById("flexCheckDefault").checked
         }
+
       console.log(customer)
+    }
+
+    function wypelnij(){
+      document.getElementById("FirmaEntry").innerHTML.value = "firma"
     }
   </script>
 </head>
@@ -72,6 +83,9 @@
           </label>
         </div>
         <button type="submit" class="btn btn-primary mb-3">zatwierdz</button><br>
+
+        <button type="button" class="btn btn-danger" onclick="wypelnij()">wypelnij</button>
+      
     </form>
 
   </div>
