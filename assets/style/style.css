@@ -1,6 +1,30 @@
 body{
-    background-color: black;
-    color: white;
+    /*background-color: black;*/
+    /*color: white;*/
+}
+
+
+#form {
+    display: block;
+}
+
+#list{
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */

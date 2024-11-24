@@ -2,93 +2,141 @@
 <html lang="pl">
 
 <head>
-  
- 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formularz z listą</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+       
+    </style>
+    <script>
+        let arr = []; // Tablica przechowująca dane klientów
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-  
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="assets/style/style.css">
-  <script>
-    function funkcja(event) {
-      event.preventDefault()
-      console.log(event)
-        let customer = {
-          nazwaFirmy: document.getElementById("FirmaEntry").value,
-          NIP: document.getElementById("nipEntry").value,
-          Miasto: document.getElementById("MiastoEntry").value,
-          Ulica: document.getElementById("UlicaEntry").value,
-          uwagi: document.getElementById("uwagi").value,
-          flexCheckDefault: document.getElementById("flexCheckDefault").checked
+        // Funkcja obsługi formularza
+        function funkcja(event) {
+            event.preventDefault(); // Zapobiega przeładowaniu strony
+            let customer = {
+                nazwaFirmy: document.getElementById("FirmaEntry").value,
+                NIP: document.getElementById("nipEntry").value,
+                Miasto: document.getElementById("MiastoEntry").value,
+                Ulica: document.getElementById("UlicaEntry").value,
+                uwagi: document.getElementById("uwagi").value,
+                flexCheckDefault: document.getElementById("flexCheckDefault").checked
+            };
+
+            // Dodaj obiekt do tablicy
+            arr.push(customer);
+            updateTable();
+            clearForm() // Aktualizuj listę
+            showlist(); // Przełącz na widok listy
         }
 
-      console.log(customer)
-    }
+        // Funkcja wypełniania danych w formularzu
+        function wypelnij() {
+            document.getElementById("FirmaEntry").value = "Przykładowa firma";
+            document.getElementById("nipEntry").value = "1234567890";
+            document.getElementById("MiastoEntry").value = "Warszawa";
+            document.getElementById("UlicaEntry").value = "Nowa 12";
+            document.getElementById("uwagi").value = "Przykładowe uwagi";
+            document.getElementById("flexCheckDefault").checked = true;
+        }
 
-    function wypelnij(){
-      document.getElementById("FirmaEntry").innerHTML.value = "firma"
+        // Funkcja przełączenia widoku na formularz
+        function showform() {
+            document.getElementById("form").style.display = 'block';
+            document.getElementById("list").style.display = 'none';
+        }
+
+        // Funkcja przełączenia widoku na listę
+        function showlist() {
+            document.getElementById("form").style.display = 'none';
+            document.getElementById("list").style.display = 'block';
+        }
+        function clearForm() {
+        document.getElementById("FirmaEntry").value = "";
+        document.getElementById("nipEntry").value = "";
+        document.getElementById("MiastoEntry").value = "";
+        document.getElementById("UlicaEntry").value = "";
+        document.getElementById("uwagi").value = "";
+        document.getElementById("flexCheckDefault").checked = false; // Odznacz pole checkbox
     }
-  </script>
+        // Funkcja aktualizująca listę w formacie jednoliniowym
+        function updateTable() {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = arr.map((customer, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${customer.nazwaFirmy}</td>
+                    <td>${customer.NIP}</td>
+                    <td>${customer.Miasto}</td>
+                    <td>${customer.Ulica}</td>
+                    <td>${customer.uwagi}</td>
+                    <td>${customer.flexCheckDefault ? 'Tak' : 'Nie'}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
 </head>
 
 <body>
-  <div class="container">
-
-    <form class="row g-3" onsubmit="funkcja(event)">
-      <div class="mb-3">
-        <label class="form-label">Nazwa firmy</label>
-        <input class="form-control" id="FirmaEntry" required>
-      </div>
-
-
+    <div class="container">
+        <!-- Formularz -->
+        <form class="row g-3" onsubmit="funkcja(event)" id="form">
             <div class="mb-3">
-              <label class="form-label">NIP</label>
+                <label class="form-label" for="FirmaEntry">Nazwa firmy</label>
+                <input class="form-control" id="FirmaEntry" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="nipEntry">NIP</label>
                 <input class="form-control" id="nipEntry" required>
             </div>
-
-
             <div class="mb-3">
-              <label class="form-label">Miasto</label>
+                <label class="form-label" for="MiastoEntry">Miasto</label>
                 <input class="form-control" id="MiastoEntry" required>
             </div>
-
             <div class="mb-3">
-              <label class="form-label">Ulica</label>
-              <input class="form-control" id="UlicaEntry">
+                <label class="form-label" for="UlicaEntry">Ulica</label>
+                <input class="form-control" id="UlicaEntry">
             </div>
-
-
             <div class="mb-3">
-              <label class="form-label">uwagi</label>
-              <textarea class="form-control" id="uwagi" rows="3"></textarea>
+                <label class="form-label" for="uwagi">Uwagi</label>
+                <textarea class="form-control" id="uwagi" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" checked>
+                    <label class="form-check-label" for="flexCheckDefault">ZaZnacz</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Zatwierdź</button><br>
+            <button type="button" class="btn btn-danger mb-3" onclick="wypelnij()">Wypełnij</button>
+        </form>
 
-
-        <br>
-        <select class="form-select" aria-label="Default select example">
-
-          <option selected>branża</option>
-          <option value="IT">IT</option>
-          <option value="IT2">IT2</option>
-          <option value="IT3">IT3</option>
-        </select>
-
-
-        <br>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-          <label class="form-check-label" for="flexCheckDefault">
-            ZaZnacz
-          </label>
-        </div>
-        <button type="submit" class="btn btn-primary mb-3">zatwierdz</button><br>
-
-        <button type="button" class="btn btn-danger" onclick="wypelnij()">wypelnij</button>
-      
-    </form>
-
-  </div>
+        <!-- Sekcja listy -->
+        <div id="list">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Nazwa Firmy</th>
+                      <th>NIP</th>
+                      <th>Miasto</th>
+                      <th>Ulica</th>
+                      <th>Uwagi</th>
+                      <th>ZaZnacz</th>
+                  </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+          </table>
+      </div>
+      <br>
+      <div style="text-align: center;">
+        <!-- Przełączniki widoków -->
+        <button onclick="showlist()" class="btn btn-info mb-3">Pokaż listę</button><br>
+        <button onclick="showform()" class="btn btn-info mb-3">Pokaż formularz</button>
+      </div>
+    </div>
+    <script>showform()</script>
 </body>
 
 </html>
